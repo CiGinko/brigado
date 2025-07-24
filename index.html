@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobBoard - Najdi si brigádu snov</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f9f9f9;
+            background: #f4f6f8;
             color: #333;
         }
         header {
@@ -31,6 +31,13 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
+            transition: background 0.2s, color 0.2s;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+        nav a:hover {
+            background: #ffede0;
+            color: #ff5500;
         }
         .hero {
             padding: 20px;
@@ -72,6 +79,13 @@
             align-items: center;
             font-size: 0.9rem;
             gap: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-radius: 5px;
+            padding: 3px 5px;
+        }
+        .sidebar label:hover {
+            background: #eef1f4;
         }
         .content {
             flex: 1;
@@ -94,28 +108,59 @@
             color: white;
             border: none;
             cursor: pointer;
+            transition: background 0.2s ease;
         }
-        .tips {
-            max-width: 900px;
-            padding: 0 20px;
+        .search-bar button:hover {
+            background-color: #e24700;
         }
-        .tips h2 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        .tips ul {
-            list-style: none;
-            padding: 0;
+        .job-listings {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 10px;
         }
-        .tips li {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            flex: 1 1 200px;
+        .job-card {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            min-height: 250px;
+            border-radius: 12px;
+            background: linear-gradient(to right, #ffffff, #f9f9f9);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        .job-logo {
+            width: 100px;
+            background: #ff5500;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            padding: 10px;
+            font-size: 0.8rem;
+        }
+        .job-content {
+            flex: 1;
+            padding: 16px 20px;
+        }
+        .job-content h4 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+            color: #1a2b4c;
+        }
+        .job-content p {
+            margin: 6px 0;
+            font-size: 0.9rem;
+        }
+        .job-added {
+            margin-top: 10px;
+            font-size: 0.55rem;
+            background-color: #3d7ded;
+            color: #fff;
+            padding: 3px 6px;
+            border-radius: 6px;
+            display: inline-block;
         }
         footer {
             background: #fff;
@@ -127,73 +172,97 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">JobBoard</div>
-        <nav>
-            <a href="#">Pre študentov</a>
-            <a href="#">Startup brigády</a>
-            <a href="#">Prihlásiť sa</a>
-        </nav>
-    </header>
-    <div class="hero">
-        <h1>Nájdi si brigádu alebo prácu, ktorá ťa bude baviť</h1>
-    </div>
-    <div class="main-content">
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <h3>Veková kategória</h3>
-                <label><input type="checkbox"> Do 18 rokov</label>
-                <label><input type="checkbox"> Nad 18 rokov</label>
+<header>
+    <div class="logo">JobBoard</div>
+    <nav>
+        <a href="#">Pre študentov</a>
+        <a href="#">Startup brigády</a>
+        <a href="#">Prihlásiť sa</a>
+    </nav>
+</header>
+<div class="hero">
+    <h1>Nájdi si brigádu alebo prácu, ktorá ťa bude baviť</h1>
+</div>
+<div class="main-content">
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <h3>Veková kategória</h3>
+            <label><input type="checkbox"> Do 18 rokov</label>
+            <label><input type="checkbox"> Nad 18 rokov</label>
+        </div>
+        <div class="sidebar-section">
+            <h3>Typ dohody</h3>
+            <label><input type="checkbox"> Dohoda o brigádnickej práci</label>
+            <label><input type="checkbox"> Dlhodobý pracovný pomer</label>
+            <label><input type="checkbox"> Práca na dôchodku</label>
+        </div>
+        <div class="sidebar-section">
+            <h3>Sektor práce</h3>
+            <label><input type="checkbox"> IT / Programovanie</label>
+            <label><input type="checkbox"> Administratíva / Office</label>
+            <label><input type="checkbox"> Sklad / Logistika / Doprava</label>
+            <label><input type="checkbox"> Obchod / Predaj</label>
+            <label><input type="checkbox"> Gastro / Reštaurácie</label>
+            <label><input type="checkbox"> Výroba / Montáž / Manuálne</label>
+            <label><input type="checkbox"> Marketing / Sociálne siete</label>
+            <label><input type="checkbox"> Zdravotníctvo</label>
+            <label><input type="checkbox"> Iné</label>
+        </div>
+        <div class="sidebar-section">
+            <h3>Mzda</h3>
+            <label><input type="checkbox"> 800 €/mes (~5 €/hod)</label>
+            <label><input type="checkbox"> 1000 €/mes (~6,25 €/hod)</label>
+            <label><input type="checkbox"> 1200 €/mes (~7,5 €/hod)</label>
+            <label><input type="checkbox"> 1500+ €/mes (~9+ €/hod)</label>
+        </div>
+    </aside>
+    <div class="content">
+        <div class="search-bar">
+            <input type="text" placeholder="Napr. barista, grafický dizajn">
+            <button>Vyhľadať</button>
+        </div>
+        <div class="job-listings">
+            <div class="job-card">
+                <div class="job-logo">Techies.sk</div>
+                <div class="job-content">
+                    <h4>Frontend brigádnik pre startup - ideálne pre študenta</h4>
+                    <p>Vývoj webových rozhraní, spolupráca s tímom, možnosť rastu.</p>
+                    <p><strong>Mesto:</strong> Bratislava / HomeOffice</p>
+                    <p><strong>Typ práce:</strong> Dlhodobý pracovný pomer</p>
+                    <p><strong>Mzda:</strong> 1100 € / mesiac (7,50 € / hod.)</p>
+                    <p><strong>Inzeruje:</strong> StartApp s.r.o.</p>
+                    <p class="job-added">Zverejnené pred 3 dňami</p>
+                </div>
             </div>
-            <div class="sidebar-section">
-                <h3>Typ dohody</h3>
-                <label><input type="checkbox"> Dohoda o brigádnickej práci</label>
-                <label><input type="checkbox"> Dlhodobý pracovný pomer</label>
-                <label><input type="checkbox"> Práca na dôchodku</label>
+            <div class="job-card">
+                <div class="job-logo">KreativGroup</div>
+                <div class="job-content">
+                    <h4>Junior grafik pre sociálne siete a online kampane</h4>
+                    <p>Príprava bannerov a obrázkov, práca s grafickým softvérom.</p>
+                    <p><strong>Mesto:</strong> Trenčín</p>
+                    <p><strong>Typ práce:</strong> Práca na dohodu</p>
+                    <p><strong>Mzda:</strong> 650 € / mesiac (5,00 € / hod.)</p>
+                    <p><strong>Inzeruje:</strong> KreativGroup Media</p>
+                    <p class="job-added">Zverejnené pred 4 dňami</p>
+                </div>
             </div>
-            <div class="sidebar-section">
-                <h3>Sektor práce</h3>
-                <label><input type="checkbox"> IT / Programovanie</label>
-                <label><input type="checkbox"> Administratíva / Office</label>
-                <label><input type="checkbox"> Sklad / Logistika / Doprava</label>
-                <label><input type="checkbox"> Obchod / Predaj</label>
-                <label><input type="checkbox"> Gastro / Reštaurácie</label>
-                <label><input type="checkbox"> Výroba / Montáž / Manuálne</label>
-                <label><input type="checkbox"> Marketing / Sociálne siete</label>
-                <label><input type="checkbox"> Zdravotníctvo</label>
-                <label><input type="checkbox"> Iné</label>
+            <div class="job-card">
+                <div class="job-logo">ByteHouse</div>
+                <div class="job-content">
+                    <h4>IT Support pre študentov - podpora používateľov</h4>
+                    <p>Základná IT podpora, práca s helpdeskom, školenie od seniorov.</p>
+                    <p><strong>Mesto:</strong> Košice</p>
+                    <p><strong>Typ práce:</strong> Práca na dôchodku</p>
+                    <p><strong>Mzda:</strong> 750 € / mesiac (6,00 € / hod.)</p>
+                    <p><strong>Inzeruje:</strong> ByteHouse s.r.o.</p>
+                    <p class="job-added">Zverejnené pred 5 dňami</p>
+                </div>
             </div>
-            <div class="sidebar-section">
-                <h3>Mzda</h3>
-                <label><input type="checkbox"> 800 €/mes (~5 €/hod)</label>
-                <label><input type="checkbox"> 1000 €/mes (~6,25 €/hod)</label>
-                <label><input type="checkbox"> 1200 €/mes (~7,5 €/hod)</label>
-                <label><input type="checkbox"> 1500+ €/mes (~9+ €/hod)</label>
-            </div>
-        </aside>
-        <div class="content">
-            <div class="search-bar">
-                <input type="text" placeholder="Napr. barista, grafický dizajn">
-                <button>Vyhľadať</button>
-            </div>
-            <section class="tips">
-                <h2>Pomôcky pre hľadanie práce</h2>
-                <ul>
-                    <li>Vytvor si životopis</li>
-                    <li>Podcast o kariére mladých</li>
-                    <li>Tipy na pohovor</li>
-                </ul>
-                <h2>Ponuky, ktoré vyzerajú zaujímavo</h2>
-                <ul>
-                    <li>🔥 Práca snov pre študentov – zaplatená stáž v startupe</li>
-                    <li>Top platená brigáda – Mystery shopper</li>
-                    <li>Brand ambasádor pre známy e‑shop</li>
-                </ul>
-            </section>
         </div>
     </div>
-    <footer>
-        &copy; 2025 JobBoard. Všetky práva vyhradené.
-    </footer>
+</div>
+<footer>
+    &copy; 2025 JobBoard. Všetky práva vyhradené.
+</footer>
 </body>
 </html>
