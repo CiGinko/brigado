@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobBoard - Najdi si brigádu snov</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ff5500;
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        .layout {
+            display: flex;
+            flex-direction: row;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 280px;
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .sidebar h3 {
+            font-size: 1rem;
+            margin: 0 0 6px;
+            font-weight: 600;
+        }
+        .sidebar label {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            gap: 8px;
+        }
+        .content {
+            flex: 1;
+        }
+        .hero {
+            padding: 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .search-bar {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-bar input, .search-bar button {
+            padding: 10px;
+            font-size: 1rem;
+        }
+        .search-bar input {
+            flex: 1;
+        }
+        .search-bar button {
+            background-color: #ff5500;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .map-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .map-section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .map-image {
+            position: relative;
+            display: inline-block;
+        }
+        .map-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .map-point {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: red;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+        }
+        .tips {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .tips h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .tips ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .tips li {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            flex: 1 1 200px;
+        }
+        footer {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">JobBoard</div>
+        <nav>
+            <a href="#">Pre študentov</a>
+            <a href="#">Startup brigády</a>
+            <a href="#">Prihlásiť sa</a>
+        </nav>
+    </header>
+    <div class="hero">
+        <h1>Nájdi si brigádu alebo prácu, ktorá ťa bude baviť</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Napr. barista, grafický dizajn">
+            <button>Vyhľadať</button>
+        </div>
+    </div>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Veková kategória</h3>
+                <label><input type="checkbox"> Do 18 rokov</label>
+                <label><input type="checkbox"> Nad 18 rokov</label>
+            </div>
+            <div class="sidebar-section">
+                <h3>Typ dohody</h3>
+                <label><input type="checkbox"> Dohoda o brigádnickej práci</label>
+                <label><input type="checkbox"> Dlhodobý pracovný pomer</label>
+                <label><input type="checkbox"> Práca na dôchodku</label>
+            </div>
+            <div class="sidebar-section">
+                <h3>Sektor práce</h3>
+                <label><input type="checkbox"> IT / Programovanie</label>
+                <label><input type="checkbox"> Administratíva / Office</label>
+                <label><input type="checkbox"> Sklad / Logistika / Doprava</label>
+                <label><input type="checkbox"> Obchod / Predaj</label>
+                <label><input type="checkbox"> Gastro / Reštaurácie</label>
+                <label><input type="checkbox"> Výroba / Montáž / Manuálne</label>
+                <label><input type="checkbox"> Marketing / Sociálne siete</label>
+                <label><input type="checkbox"> Zdravotníctvo</label>
+                <label><input type="checkbox"> Iné</label>
+            </div>
+            <div class="sidebar-section">
+                <h3>Mzda</h3>
+                <label><input type="checkbox"> 800 €/mes (~5 €/hod)</label>
+                <label><input type="checkbox"> 1000 €/mes (~6,25 €/hod)</label>
+                <label><input type="checkbox"> 1200 €/mes (~7,5 €/hod)</label>
+                <label><input type="checkbox"> 1500+ €/mes (~9+ €/hod)</label>
+            </div>
+        </aside>
+        <main class="content">
+            <section class="tips">
+                <h2>Pomôcky pre hľadanie práce</h2>
+                <ul>
+                    <li>Vytvor si životopis</li>
+                    <li>Podcast o kariére mladých</li>
+                    <li>Tipy na pohovor</li>
+                </ul>
+                <h2>Ponuky, ktoré vyzerajú zaujímavo</h2>
+                <ul>
+                    <li>🔥 Práca snov pre študentov – zaplatená stáž v startupe</li>
+                    <li>Top platená brigáda – Mystery shopper</li>
+                    <li>Brand ambasádor pre známy e‑shop</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <footer>
+        &copy; 2025 JobBoard. Všetky práva vyhradené.
+    </footer>
+</body>
+</html>
