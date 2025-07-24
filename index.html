@@ -32,10 +32,19 @@
             color: #333;
             font-weight: 500;
         }
-        .layout {
+        .hero {
+            padding: 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .main-content {
             display: flex;
             flex-direction: row;
-            padding: 20px;
+            padding: 0 20px 20px;
+            align-items: flex-start;
         }
         .sidebar {
             width: 280px;
@@ -67,17 +76,9 @@
         .content {
             flex: 1;
         }
-        .hero {
-            padding: 20px;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
         .search-bar {
             max-width: 600px;
-            margin: 20px auto;
+            margin: 0 auto 20px;
             display: flex;
             gap: 10px;
         }
@@ -94,38 +95,8 @@
             border: none;
             cursor: pointer;
         }
-        .map-section {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .map-section h2 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        .map-image {
-            position: relative;
-            display: inline-block;
-        }
-        .map-image img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        .map-point {
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            background: red;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid white;
-        }
         .tips {
             max-width: 900px;
-            margin: 40px auto;
             padding: 0 20px;
         }
         .tips h2 {
@@ -166,12 +137,8 @@
     </header>
     <div class="hero">
         <h1>Nájdi si brigádu alebo prácu, ktorá ťa bude baviť</h1>
-        <div class="search-bar">
-            <input type="text" placeholder="Napr. barista, grafický dizajn">
-            <button>Vyhľadať</button>
-        </div>
     </div>
-    <div class="layout">
+    <div class="main-content">
         <aside class="sidebar">
             <div class="sidebar-section">
                 <h3>Veková kategória</h3>
@@ -204,7 +171,11 @@
                 <label><input type="checkbox"> 1500+ €/mes (~9+ €/hod)</label>
             </div>
         </aside>
-        <main class="content">
+        <div class="content">
+            <div class="search-bar">
+                <input type="text" placeholder="Napr. barista, grafický dizajn">
+                <button>Vyhľadať</button>
+            </div>
             <section class="tips">
                 <h2>Pomôcky pre hľadanie práce</h2>
                 <ul>
@@ -219,7 +190,7 @@
                     <li>Brand ambasádor pre známy e‑shop</li>
                 </ul>
             </section>
-        </main>
+        </div>
     </div>
     <footer>
         &copy; 2025 JobBoard. Všetky práva vyhradené.
